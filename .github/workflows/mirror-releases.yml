@@ -1,0 +1,34 @@
+name: Mirror releases from puntersedge.online
+
+# The site builds each monthly release at 03:10 UTC on the 3rd. This copies any new release
+# into the repository and attaches its files to a GitHub release, after checking every file
+# against the checksums the site publishes. The 5th is a retry in case the site's build was late.
+on:
+  schedule:
+    - cron: "40 5 3,5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-releases
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mirror new releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          STAMP=""
+          # The run on the 3rd records the check date, so the repository shows activity every
+          # month and GitHub keeps the schedule enabled.
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%d)" = "03" ]; then STAMP="--stamp"; fi
+          python3 tools/mirror_from_site.py --apply $STAMP

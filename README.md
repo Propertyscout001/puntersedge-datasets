@@ -2,9 +2,13 @@
 
 Free monthly samples of the [PuntersEdge](https://puntersedge.online) Australian racing closing-line archive, released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
+<!-- releases:start -->
 | Release | Races | Rows | Bookmakers | Files |
 |---|---|---|---|---|
 | [September 2026](releases/2026-09/README.md) | 6,310 | 234,451 | TAB, Ladbrokes, PointsBet, BetRight, TABtouch | [Parquet](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.parquet) · [CSV](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.csv.gz) |
+
+Last checked against the site on 2026-10-05.
+<!-- releases:end -->
 
 Each release holds the opening and closing fixed win prices for Australian thoroughbred, harness and greyhound races at a set of bookmakers, one row per race, runner and bookmaker, with the finishing position where one was published. Every closing price was observed within 300 seconds of the advertised start. Each release's two data files and their checksums are also attached to the matching [GitHub release](https://github.com/Propertyscout001/puntersedge-datasets/releases). The page with every release, checksums and the column reference is [puntersedge.online/datasets](https://puntersedge.online/datasets); the machine-readable catalogue is [/datasets.json](https://puntersedge.online/datasets.json).
 
@@ -22,7 +26,7 @@ df = pd.read_parquet(
 
 ## How a release is built
 
-[`tools/build_sample.py`](tools/build_sample.py) reads the month file of the closing-line archive, keeps Australian races at the chosen bookmakers and applies the same default filters as `GET /v1/racing/closing-lines`: the last observation within 300 seconds of the jump, no runner the result marked scratched, and no row the archive flags as a possible venue or name mismatch. A bookmaker is included when at least 75% of its series that month were last observed within 300 seconds of the jump. A release is built once, on the 3rd of the month after next, and never changed afterwards.
+[`tools/build_sample.py`](tools/build_sample.py) reads the month file of the closing-line archive, keeps Australian races at the chosen bookmakers and applies the same default filters as `GET /v1/racing/closing-lines`: the last observation within 300 seconds of the jump, no runner the result marked scratched, and no row the archive flags as a possible venue or name mismatch. A bookmaker is included when at least 75% of its series that month were last observed within 300 seconds of the jump. A release is built once, on the 3rd of the month after next, and never changed afterwards. A scheduled workflow copies each new release here the same day, after checking every file against the checksums the site publishes.
 
 ## Licences
 
