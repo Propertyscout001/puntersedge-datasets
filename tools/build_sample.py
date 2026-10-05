@@ -267,6 +267,9 @@ def build(args) -> int:
                         "venue-split and name-fragment suspects removed", "runners the result marked scratched removed"],
             "license": "CC-BY-4.0",
             "files": files,
+            "revision": args.revision,
+            "revision_note": args.note or None,
+            "revision_date": stamp.date().isoformat(),
         }
         with open(os.path.join(tmp, "summary.json"), "w") as fh:
             json.dump(summary, fh, indent=1, default=str)
@@ -358,7 +361,12 @@ def readme(s: dict) -> str:
         "configs:\n- config_name: default\n  data_files: " + pq_name + "\n"
         "---\n\n"
     )
-    return front + f"""# {title}
+    rev = ""
+    if s.get("revision", 1) > 1:
+        when = dt.date.fromisoformat(s["revision_date"]).strftime("%-d %B %Y")
+        rev = (f"## Revisions\n\nRevision {s['revision']} ({when}): {s.get('revision_note') or 'rebuilt.'} "
+               f"The files, checksums and `datapackage.json` version changed; cite the version `{version_of(s)}`.\n\n")
+    body = front + f"""# {title}
 
 Opening and closing fixed win prices for {s['races']:,} Australian thoroughbred, harness and greyhound races run in {month_title(m)}, at {books}, with the finishing position where one was published. One row per race, runner and bookmaker. Collected by [PuntersEdge]({SITE}) from each bookmaker's public prices, released under CC BY 4.0.
 
@@ -446,6 +454,12 @@ Checksums are in `SHA256SUMS`. Generated {s['generated_at']}.
 
 For research and analysis. 18+. Gambling Help Online: 1800 858 858.
 """
+    return body.replace("## Licence and citation", rev + "## Licence and citation", 1)
+
+
+def version_of(s: dict) -> str:
+    """'2026-09' for a first build, '2026-09.2' for its second revision — so a citation names the files."""
+    return s["release"] if s.get("revision", 1) == 1 else f"{s['release']}.{s['revision']}"
 
 
 def datapackage(s: dict) -> dict:
@@ -463,7 +477,7 @@ def datapackage(s: dict) -> dict:
         "title": f"Australian racing closing lines, {month_title(m)}",
         "description": f"Opening and closing fixed win prices for Australian racing at {book_list(s['bookmakers'])}, with results. One row per race, runner and bookmaker.",
         "homepage": f"{SITE}/datasets",
-        "version": m,
+        "version": version_of(s),
         "created": s["generated_at"],
         "licenses": [{"name": "CC-BY-4.0", "path": LICENSE_URL, "title": "Creative Commons Attribution 4.0"}],
         "sources": [{"title": "PuntersEdge closing-line archive", "path": f"{SITE}/data-quality"}],
@@ -484,7 +498,7 @@ def zenodo(s: dict) -> dict:
         "creators": [{"name": "Carter, Hamish", "affiliation": "PuntersEdge"}],
         "license": "cc-by-4.0",
         "access_right": "open",
-        "version": m,
+        "version": version_of(s),
         "keywords": ["horse racing", "greyhound racing", "harness racing", "betting odds", "closing line value", "Australia"],
         "related_identifiers": [{"identifier": f"{SITE}/datasets", "relation": "isDocumentedBy", "resource_type": "other"}],
     }
@@ -512,6 +526,10 @@ def main(argv=None) -> int:
     ap.add_argument("--min-close-share", type=float, default=0.75)
     ap.add_argument("--min-result-share", type=float, default=0.90)
     ap.add_argument("--min-books", type=int, default=3)
+    ap.add_argument("--revision", type=int, default=1,
+                    help="Revision number when a published month is rebuilt on purpose (default 1)")
+    ap.add_argument("--note", default="",
+                    help="What changed in this revision; written to README.md, summary.json and the metadata")
     return build(ap.parse_args(argv))
 
 
