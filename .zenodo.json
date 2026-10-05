@@ -1,0 +1,10 @@
+{
+ "title": "Australian racing closing lines (PuntersEdge monthly sample)",
+ "upload_type": "dataset",
+ "description": "<p>Monthly releases of opening and closing fixed win prices for Australian thoroughbred, harness and greyhound racing at a set of Australian bookmakers, one row per race, runner and bookmaker, with finishing positions where published. Every closing price was observed within 300 seconds of the advertised start. Collected by PuntersEdge from each bookmaker's public prices. Each GitHub release carries one month as Parquet and CSV with checksums.</p>",
+ "creators": [{"name": "Carter, Hamish", "affiliation": "PuntersEdge"}],
+ "license": "cc-by-4.0",
+ "access_right": "open",
+ "keywords": ["horse racing", "greyhound racing", "harness racing", "betting odds", "closing line value", "Australia"],
+ "related_identifiers": [{"identifier": "https://puntersedge.online/datasets", "relation": "isDocumentedBy", "resource_type": "other"}]
+}

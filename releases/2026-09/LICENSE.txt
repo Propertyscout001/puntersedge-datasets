@@ -1,0 +1,10 @@
+Australian Racing Closing Lines, September 2026 release, by PuntersEdge
+is licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "PuntersEdge Australian racing closing-line sample (puntersedge.online), September 2026, CC BY 4.0".
+
+The licence covers PuntersEdge's compilation: the selection, capture timing, joins and
+flags. Prices are PuntersEdge's observations of prices each bookmaker displayed publicly.
+Bookmaker names are trademarks of their owners; this dataset is not affiliated with or
+endorsed by any bookmaker or racing body.

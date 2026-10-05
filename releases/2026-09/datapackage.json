@@ -1,0 +1,286 @@
+{
+ "name": "au-racing-closing-lines-2026-09",
+ "title": "Australian racing closing lines, September 2026",
+ "description": "Opening and closing fixed win prices for Australian racing at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with results. One row per race, runner and bookmaker.",
+ "homepage": "https://puntersedge.online/datasets",
+ "version": "2026-09",
+ "created": "2026-10-05T08:08:23Z",
+ "licenses": [
+  {
+   "name": "CC-BY-4.0",
+   "path": "https://creativecommons.org/licenses/by/4.0/",
+   "title": "Creative Commons Attribution 4.0"
+  }
+ ],
+ "sources": [
+  {
+   "title": "PuntersEdge closing-line archive",
+   "path": "https://puntersedge.online/data-quality"
+  }
+ ],
+ "keywords": [
+  "horse racing",
+  "greyhound racing",
+  "harness racing",
+  "odds",
+  "closing line",
+  "Australia"
+ ],
+ "resources": [
+  {
+   "name": "au-racing-closing-lines-2026-09-parquet",
+   "path": "au-racing-closing-lines-2026-09.parquet",
+   "format": "parquet",
+   "mediatype": "application/vnd.apache.parquet",
+   "bytes": 2678773,
+   "hash": "sha256:db477d827f5df08cfad9ca66184ee2a0b13d1f0b0ef98965e6dbec1183699a06",
+   "schema": {
+    "fields": [
+     {
+      "name": "race_id",
+      "type": "string",
+      "description": "PuntersEdge race identifier. The same id the API returns on /v1/racing/results and /v1/racing/closing-lines."
+     },
+     {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "Advertised start time of the race, UTC."
+     },
+     {
+      "name": "meeting_date_aet",
+      "type": "date",
+      "description": "Racing day the meeting belongs to, in Australian Eastern time."
+     },
+     {
+      "name": "venue",
+      "type": "string",
+      "description": "Venue name."
+     },
+     {
+      "name": "race_number",
+      "type": "integer",
+      "description": "Race number at the meeting."
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "description": "horse (thoroughbred), harness or greyhound."
+     },
+     {
+      "name": "country",
+      "type": "string",
+      "description": "AU for every row in this sample."
+     },
+     {
+      "name": "runner_key",
+      "type": "string",
+      "description": "Runner name folded to lowercase letters and digits. Joins one runner's rows across bookmakers within a race."
+     },
+     {
+      "name": "runner_name",
+      "type": "string",
+      "description": "Runner name as published."
+     },
+     {
+      "name": "runner_number",
+      "type": "integer",
+      "description": "Saddlecloth or rug number."
+     },
+     {
+      "name": "bookmaker_key",
+      "type": "string",
+      "description": "Bookmaker the prices were observed at: tab, ladbrokes_au, pointsbetau, betright or tabtouch, depending on the release."
+     },
+     {
+      "name": "open_win_price",
+      "type": "number",
+      "description": "First fixed win price observed in the series, in decimal odds."
+     },
+     {
+      "name": "open_secs_to_jump",
+      "type": "integer",
+      "description": "Seconds before the advertised start at which the first price was observed."
+     },
+     {
+      "name": "open_is_baseline",
+      "type": "boolean",
+      "description": "True when the series began when the race entered the 60-minute capture window. False when the bookmaker's market appeared later, so the first price is not a market open."
+     },
+     {
+      "name": "close_win_price",
+      "type": "number",
+      "description": "Last fixed win price observed before the jump, in decimal odds. Every row in this sample was last observed within 300 seconds of the advertised start."
+     },
+     {
+      "name": "close_secs_to_jump",
+      "type": "integer",
+      "description": "Seconds before the advertised start at which the last price was observed."
+     },
+     {
+      "name": "points_observed",
+      "type": "integer",
+      "description": "Number of price observations captured in the series."
+     },
+     {
+      "name": "finish_position",
+      "type": "integer",
+      "description": "Official finishing position where one was published. NULL does not mean the runner lost: harness results name the placegetters only, and before 14 September 2026 thoroughbred and greyhound results stored positions 1 to 4 only."
+     },
+     {
+      "name": "result_status",
+      "type": "string",
+      "description": "final, interim or abandoned; NULL when no result is held for the race."
+     },
+     {
+      "name": "venue_id",
+      "type": "string",
+      "description": "Stable PuntersEdge venue identifier."
+     },
+     {
+      "name": "horse_ref",
+      "type": "string",
+      "description": "Thoroughbred identity across meetings: pe: followed by the registered name folded to letters and digits. NULL on greyhound and harness rows."
+     },
+     {
+      "name": "open_place_price",
+      "type": "number",
+      "description": "Place price at the first observation. Captured from 29 September 2026, NULL before then and at bookmakers that price win only."
+     },
+     {
+      "name": "close_place_price",
+      "type": "number",
+      "description": "Place price at the last observation. Same coverage as open_place_price."
+     }
+    ]
+   }
+  },
+  {
+   "name": "au-racing-closing-lines-2026-09-csv-gz",
+   "path": "au-racing-closing-lines-2026-09.csv.gz",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "bytes": 4183719,
+   "hash": "sha256:789139284a4329d75e3bab2e56d25a2e02832c6241375b2cb6bf412b4ad7d878",
+   "schema": {
+    "fields": [
+     {
+      "name": "race_id",
+      "type": "string",
+      "description": "PuntersEdge race identifier. The same id the API returns on /v1/racing/results and /v1/racing/closing-lines."
+     },
+     {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "Advertised start time of the race, UTC."
+     },
+     {
+      "name": "meeting_date_aet",
+      "type": "date",
+      "description": "Racing day the meeting belongs to, in Australian Eastern time."
+     },
+     {
+      "name": "venue",
+      "type": "string",
+      "description": "Venue name."
+     },
+     {
+      "name": "race_number",
+      "type": "integer",
+      "description": "Race number at the meeting."
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "description": "horse (thoroughbred), harness or greyhound."
+     },
+     {
+      "name": "country",
+      "type": "string",
+      "description": "AU for every row in this sample."
+     },
+     {
+      "name": "runner_key",
+      "type": "string",
+      "description": "Runner name folded to lowercase letters and digits. Joins one runner's rows across bookmakers within a race."
+     },
+     {
+      "name": "runner_name",
+      "type": "string",
+      "description": "Runner name as published."
+     },
+     {
+      "name": "runner_number",
+      "type": "integer",
+      "description": "Saddlecloth or rug number."
+     },
+     {
+      "name": "bookmaker_key",
+      "type": "string",
+      "description": "Bookmaker the prices were observed at: tab, ladbrokes_au, pointsbetau, betright or tabtouch, depending on the release."
+     },
+     {
+      "name": "open_win_price",
+      "type": "number",
+      "description": "First fixed win price observed in the series, in decimal odds."
+     },
+     {
+      "name": "open_secs_to_jump",
+      "type": "integer",
+      "description": "Seconds before the advertised start at which the first price was observed."
+     },
+     {
+      "name": "open_is_baseline",
+      "type": "boolean",
+      "description": "True when the series began when the race entered the 60-minute capture window. False when the bookmaker's market appeared later, so the first price is not a market open."
+     },
+     {
+      "name": "close_win_price",
+      "type": "number",
+      "description": "Last fixed win price observed before the jump, in decimal odds. Every row in this sample was last observed within 300 seconds of the advertised start."
+     },
+     {
+      "name": "close_secs_to_jump",
+      "type": "integer",
+      "description": "Seconds before the advertised start at which the last price was observed."
+     },
+     {
+      "name": "points_observed",
+      "type": "integer",
+      "description": "Number of price observations captured in the series."
+     },
+     {
+      "name": "finish_position",
+      "type": "integer",
+      "description": "Official finishing position where one was published. NULL does not mean the runner lost: harness results name the placegetters only, and before 14 September 2026 thoroughbred and greyhound results stored positions 1 to 4 only."
+     },
+     {
+      "name": "result_status",
+      "type": "string",
+      "description": "final, interim or abandoned; NULL when no result is held for the race."
+     },
+     {
+      "name": "venue_id",
+      "type": "string",
+      "description": "Stable PuntersEdge venue identifier."
+     },
+     {
+      "name": "horse_ref",
+      "type": "string",
+      "description": "Thoroughbred identity across meetings: pe: followed by the registered name folded to letters and digits. NULL on greyhound and harness rows."
+     },
+     {
+      "name": "open_place_price",
+      "type": "number",
+      "description": "Place price at the first observation. Captured from 29 September 2026, NULL before then and at bookmakers that price win only."
+     },
+     {
+      "name": "close_place_price",
+      "type": "number",
+      "description": "Place price at the last observation. Same coverage as open_place_price."
+     }
+    ]
+   },
+   "compression": "gz"
+  }
+ ]
+}

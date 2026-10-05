@@ -1,0 +1,5 @@
+# Data files are published on puntersedge.online and attached to GitHub releases, not committed.
+*.parquet
+*.csv.gz
+__pycache__/
+.DS_Store

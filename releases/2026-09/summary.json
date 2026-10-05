@@ -1,0 +1,150 @@
+{
+ "dataset": "au-racing-closing-lines",
+ "release": "2026-09",
+ "generated_at": "2026-10-05T08:08:23Z",
+ "period": {
+  "from": "2026-09-01",
+  "to": "2026-09-30"
+ },
+ "first_start_utc": "2026-09-01T01:45:00+00:00",
+ "last_start_utc": "2026-09-30T13:29:00+00:00",
+ "rows": 234451,
+ "races": 6310,
+ "rows_by_code": {
+  "greyhound": 130033,
+  "horse": 55307,
+  "harness": 49111
+ },
+ "races_by_code": {
+  "greyhound": 3866,
+  "horse": 1286,
+  "harness": 1158
+ },
+ "rows_by_book": {
+  "betright": 46883,
+  "ladbrokes_au": 48125,
+  "pointsbetau": 47596,
+  "tab": 45521,
+  "tabtouch": 46326
+ },
+ "bookmakers": [
+  "tab",
+  "ladbrokes_au",
+  "pointsbetau",
+  "betright",
+  "tabtouch"
+ ],
+ "close_share_before_filter": {
+  "tab": 0.9076,
+  "ladbrokes_au": 0.9169,
+  "pointsbetau": 0.9457,
+  "betright": 0.9316,
+  "tabtouch": 0.9209
+ },
+ "races_with_result_share": 0.9781,
+ "rows_with_finish_position": 164044,
+ "figures": {
+  "best_price_share": {
+   "tab": 0.3962,
+   "ladbrokes_au": 0.1937,
+   "pointsbetau": 0.4985,
+   "betright": 0.4469,
+   "tabtouch": 0.2828
+  },
+  "median_market_pct": {
+   "ladbrokes_au": {
+    "greyhound": {
+     "median_pct": 126.1,
+     "races": 3581
+    },
+    "horse": {
+     "median_pct": 121.4,
+     "races": 741
+    },
+    "harness": {
+     "median_pct": 126.8,
+     "races": 1043
+    }
+   },
+   "pointsbetau": {
+    "greyhound": {
+     "median_pct": 122.9,
+     "races": 3454
+    },
+    "horse": {
+     "median_pct": 119.6,
+     "races": 569
+    },
+    "harness": {
+     "median_pct": 124.9,
+     "races": 796
+    }
+   },
+   "tabtouch": {
+    "greyhound": {
+     "median_pct": 123.1,
+     "races": 3102
+    },
+    "harness": {
+     "median_pct": 125.2,
+     "races": 733
+    },
+    "horse": {
+     "median_pct": 120.4,
+     "races": 449
+    }
+   },
+   "betright": {
+    "greyhound": {
+     "median_pct": 123.1,
+     "races": 2872
+    },
+    "horse": {
+     "median_pct": 119.9,
+     "races": 677
+    },
+    "harness": {
+     "median_pct": 123.7,
+     "races": 772
+    }
+   },
+   "tab": {
+    "greyhound": {
+     "median_pct": 123.3,
+     "races": 2778
+    },
+    "horse": {
+     "median_pct": 121.9,
+     "races": 413
+    },
+    "harness": {
+     "median_pct": 126.1,
+     "races": 671
+    }
+   }
+  },
+  "runners_priced_by_3_or_more_books": 48619
+ },
+ "filters": [
+  "country = AU",
+  "last observation within 300 s of the jump (is_closing_line)",
+  "venue-split and name-fragment suspects removed",
+  "runners the result marked scratched removed"
+ ],
+ "license": "CC-BY-4.0",
+ "files": {
+  "au-racing-closing-lines-2026-09.parquet": {
+   "bytes": 2678773,
+   "sha256": "db477d827f5df08cfad9ca66184ee2a0b13d1f0b0ef98965e6dbec1183699a06",
+   "format": "parquet",
+   "mediatype": "application/vnd.apache.parquet"
+  },
+  "au-racing-closing-lines-2026-09.csv.gz": {
+   "bytes": 4183719,
+   "sha256": "789139284a4329d75e3bab2e56d25a2e02832c6241375b2cb6bf412b4ad7d878",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "compression": "gz"
+  }
+ }
+}
