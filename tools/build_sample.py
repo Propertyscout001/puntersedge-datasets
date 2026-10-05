@@ -102,6 +102,12 @@ COLUMNS = [
     ("horse_ref", "string", "Thoroughbred identity across meetings: pe: followed by the registered name folded to letters and digits. NULL on greyhound and harness rows."),
     ("open_place_price", "number", "Place price at the first observation. Captured from 29 September 2026, NULL before then and at bookmakers that price win only."),
     ("close_place_price", "number", "Place price at the last observation. Same coverage as open_place_price."),
+    # Appended 2026-10-05 (API migration 061). The same value on every bookmaker row of a runner.
+    ("consensus_close_prob", "number", "The market's margin-free probability for the runner at the close: each included bookmaker's win prices divided by their sum, the median across bookmakers, the field scaled to one. Computed over every Australian bookmaker in the archive (14), not only the five in this release. It describes what the market implied, not the outcome."),
+    ("consensus_close_price", "number", "1 / consensus_close_prob."),
+    ("books_in_consensus_close", "integer", "Bookmakers whose closing line entered consensus_close_prob."),
+    ("consensus_open_price", "number", "The same price from series that began at the 60-minute baseline. NULL where fewer than two complete-field bookmakers did."),
+    ("books_in_consensus_open", "integer", "Bookmakers behind consensus_open_price."),
 ]
 FRICTIONLESS_TYPE = {"string": "string", "datetime": "datetime", "date": "date", "integer": "integer", "number": "number", "boolean": "boolean"}
 
