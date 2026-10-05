@@ -5,7 +5,7 @@ Free monthly samples of the [PuntersEdge](https://puntersedge.online) Australian
 <!-- releases:start -->
 | Release | Races | Rows | Bookmakers | Files |
 |---|---|---|---|---|
-| [September 2026](releases/2026-09/README.md) | 6,310 | 234,451 | TAB, Ladbrokes, PointsBet, BetRight, TABtouch | [Parquet](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.parquet) · [CSV](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.csv.gz) |
+| [September 2026](releases/2026-09/README.md) | 6,274 | 233,872 | TAB, Ladbrokes, PointsBet, BetRight, TABtouch | [Parquet](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.parquet) · [CSV](https://puntersedge.online/datasets/au-racing-closing-lines/2026-09/au-racing-closing-lines-2026-09.csv.gz) |
 
 Last checked against the site on 2026-10-05.
 <!-- releases:end -->

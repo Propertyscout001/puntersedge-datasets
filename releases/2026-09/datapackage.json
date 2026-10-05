@@ -3,8 +3,8 @@
  "title": "Australian racing closing lines, September 2026",
  "description": "Opening and closing fixed win prices for Australian racing at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with results. One row per race, runner and bookmaker.",
  "homepage": "https://puntersedge.online/datasets",
- "version": "2026-09",
- "created": "2026-10-05T08:08:23Z",
+ "version": "2026-09.2",
+ "created": "2026-10-05T22:48:54Z",
  "licenses": [
   {
    "name": "CC-BY-4.0",
@@ -32,8 +32,8 @@
    "path": "au-racing-closing-lines-2026-09.parquet",
    "format": "parquet",
    "mediatype": "application/vnd.apache.parquet",
-   "bytes": 2678773,
-   "hash": "sha256:db477d827f5df08cfad9ca66184ee2a0b13d1f0b0ef98965e6dbec1183699a06",
+   "bytes": 4264426,
+   "hash": "sha256:cb5419056da424c45e863a26d0d3788202f6920f368e674b42ee0134277a0e84",
    "schema": {
     "fields": [
      {
@@ -150,6 +150,31 @@
       "name": "close_place_price",
       "type": "number",
       "description": "Place price at the last observation. Same coverage as open_place_price."
+     },
+     {
+      "name": "consensus_close_prob",
+      "type": "number",
+      "description": "The market's margin-free probability for the runner at the close: each included bookmaker's implied probabilities (1 / price) raised to the exponent that makes them sum to one (the power method), the median across bookmakers, the field scaled to one. Power replaced the simple divide-by-the-sum on 6 October 2026 because it is calibrated across the price range; every archived row carries the one method. Computed over every Australian bookmaker in the archive (14), not only the five in this release. It describes what the market implied, not the outcome."
+     },
+     {
+      "name": "consensus_close_price",
+      "type": "number",
+      "description": "1 / consensus_close_prob."
+     },
+     {
+      "name": "books_in_consensus_close",
+      "type": "integer",
+      "description": "Bookmakers whose closing line entered consensus_close_prob."
+     },
+     {
+      "name": "consensus_open_price",
+      "type": "number",
+      "description": "The same price from series that began at the 60-minute baseline. NULL where fewer than two complete-field bookmakers did."
+     },
+     {
+      "name": "books_in_consensus_open",
+      "type": "integer",
+      "description": "Bookmakers behind consensus_open_price."
      }
     ]
    }
@@ -159,8 +184,8 @@
    "path": "au-racing-closing-lines-2026-09.csv.gz",
    "format": "csv",
    "mediatype": "text/csv",
-   "bytes": 4183719,
-   "hash": "sha256:789139284a4329d75e3bab2e56d25a2e02832c6241375b2cb6bf412b4ad7d878",
+   "bytes": 4948655,
+   "hash": "sha256:0e6b854aa62902cc0f1b8bc8b0d5061e5beabe5bcaedeca629336fde59cfc8c9",
    "schema": {
     "fields": [
      {
@@ -277,6 +302,31 @@
       "name": "close_place_price",
       "type": "number",
       "description": "Place price at the last observation. Same coverage as open_place_price."
+     },
+     {
+      "name": "consensus_close_prob",
+      "type": "number",
+      "description": "The market's margin-free probability for the runner at the close: each included bookmaker's implied probabilities (1 / price) raised to the exponent that makes them sum to one (the power method), the median across bookmakers, the field scaled to one. Power replaced the simple divide-by-the-sum on 6 October 2026 because it is calibrated across the price range; every archived row carries the one method. Computed over every Australian bookmaker in the archive (14), not only the five in this release. It describes what the market implied, not the outcome."
+     },
+     {
+      "name": "consensus_close_price",
+      "type": "number",
+      "description": "1 / consensus_close_prob."
+     },
+     {
+      "name": "books_in_consensus_close",
+      "type": "integer",
+      "description": "Bookmakers whose closing line entered consensus_close_prob."
+     },
+     {
+      "name": "consensus_open_price",
+      "type": "number",
+      "description": "The same price from series that began at the 60-minute baseline. NULL where fewer than two complete-field bookmakers did."
+     },
+     {
+      "name": "books_in_consensus_open",
+      "type": "integer",
+      "description": "Bookmakers behind consensus_open_price."
      }
     ]
    },

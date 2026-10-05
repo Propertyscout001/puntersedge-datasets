@@ -20,16 +20,16 @@ configs:
 
 # Australian racing closing lines, September 2026
 
-Opening and closing fixed win prices for 6,310 Australian thoroughbred, harness and greyhound races run in September 2026, at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with the finishing position where one was published. One row per race, runner and bookmaker. Collected by [PuntersEdge](https://puntersedge.online) from each bookmaker's public prices, released under CC BY 4.0.
+Opening and closing fixed win prices for 6,274 Australian thoroughbred, harness and greyhound races run in September 2026, at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with the finishing position where one was published. One row per race, runner and bookmaker. Collected by [PuntersEdge](https://puntersedge.online) from each bookmaker's public prices, released under CC BY 4.0.
 
 | | |
 |---|---|
-| Rows | 234,451 |
-| Races | 6,310 (thoroughbred 1,286, greyhound 3,866, harness 1,158) |
-| Races with a result | 98% |
+| Rows | 233,872 |
+| Races | 6,274 (thoroughbred 1,283, greyhound 3,850, harness 1,141) |
+| Races with a result | 99% |
 | Period | 2026-09-01 to 2026-09-30 (race start, UTC) |
 | Bookmakers | TAB, Ladbrokes, PointsBet, BetRight and TABtouch |
-| Files | `au-racing-closing-lines-2026-09.parquet` (2.7 MB), `au-racing-closing-lines-2026-09.csv.gz` (4.2 MB) |
+| Files | `au-racing-closing-lines-2026-09.parquet` (4.3 MB), `au-racing-closing-lines-2026-09.csv.gz` (4.9 MB) |
 
 ## What is in it
 
@@ -105,6 +105,11 @@ winners = df[(df.result_status == "final") & (df.finish_position == 1)]
 | `horse_ref` | string | Thoroughbred identity across meetings: pe: followed by the registered name folded to letters and digits. NULL on greyhound and harness rows. |
 | `open_place_price` | number | Place price at the first observation. Captured from 29 September 2026, NULL before then and at bookmakers that price win only. |
 | `close_place_price` | number | Place price at the last observation. Same coverage as open_place_price. |
+| `consensus_close_prob` | number | The market's margin-free probability for the runner at the close: each included bookmaker's implied probabilities (1 / price) raised to the exponent that makes them sum to one (the power method), the median across bookmakers, the field scaled to one. Power replaced the simple divide-by-the-sum on 6 October 2026 because it is calibrated across the price range; every archived row carries the one method. Computed over every Australian bookmaker in the archive (14), not only the five in this release. It describes what the market implied, not the outcome. |
+| `consensus_close_price` | number | 1 / consensus_close_prob. |
+| `books_in_consensus_close` | integer | Bookmakers whose closing line entered consensus_close_prob. |
+| `consensus_open_price` | number | The same price from series that began at the 60-minute baseline. NULL where fewer than two complete-field bookmakers did. |
+| `books_in_consensus_open` | integer | Bookmakers behind consensus_open_price. |
 
 ## Things to know before you model on it
 
@@ -117,6 +122,10 @@ winners = df[(df.result_status == "final") & (df.finish_position == 1)]
 ## More data
 
 This is a monthly sample. The same archive is available through the [PuntersEdge API](https://puntersedge.online/api) from 4 August 2026 for 14 Australian bookmakers and New Zealand racing, with full price paths, registry identifiers and a closing-line-value scorer. A free key needs no card. Coverage and freshness are measured on the [data quality page](https://puntersedge.online/data-quality).
+
+## Revisions
+
+Revision 2 (5 October 2026): adds five market-consensus columns (consensus_close_prob, consensus_close_price, books_in_consensus_close, consensus_open_price, books_in_consensus_open): the margin-free market probability per runner at the close and at the 60-minute open, computed with the power method over every Australian bookmaker in the archive, not only the five in this file. The archive was also re-reconciled between the two builds: 47 duplicate race records (the same race held twice, under two venue spellings or start times) left the sample and 11 races entered it, 920 rows out and 341 in; finishing positions were filled in on 19,000 rows across 817 races where the first build carried placings only, and 282 rows gained a final result status. No price changed on any row present in both builds. It replaces the files published earlier on 5 October 2026 (UTC); their SHA-256 checksums were db477d827f5df08cfad9ca66184ee2a0b13d1f0b0ef98965e6dbec1183699a06 (parquet) and 789139284a4329d75e3bab2e56d25a2e02832c6241375b2cb6bf412b4ad7d878 (csv.gz). The files, checksums and `datapackage.json` version changed; cite the version `2026-09.2`.
 
 ## Licence and citation
 
@@ -132,6 +141,6 @@ Data: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Credit "Punters
 }
 ```
 
-Checksums are in `SHA256SUMS`. Generated 2026-10-05T08:08:23Z.
+Checksums are in `SHA256SUMS`. Generated 2026-10-05T22:48:54Z.
 
 For research and analysis. 18+. Gambling Help Online: 1800 858 858.

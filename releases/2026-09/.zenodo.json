@@ -1,7 +1,7 @@
 {
  "title": "Australian racing closing lines, September 2026 (PuntersEdge sample)",
  "upload_type": "dataset",
- "description": "<p>Opening and closing fixed win prices for 6,310 Australian thoroughbred, harness and greyhound races in September 2026 at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with finishing positions where published. 234,451 rows, one per race, runner and bookmaker. Every closing price was observed within 300 seconds of the advertised start. Collected by PuntersEdge from each bookmaker's public prices.</p>",
+ "description": "<p>Opening and closing fixed win prices for 6,274 Australian thoroughbred, harness and greyhound races in September 2026 at TAB, Ladbrokes, PointsBet, BetRight and TABtouch, with finishing positions where published. 233,872 rows, one per race, runner and bookmaker. Every closing price was observed within 300 seconds of the advertised start. Collected by PuntersEdge from each bookmaker's public prices.</p>",
  "creators": [
   {
    "name": "Carter, Hamish",
@@ -10,7 +10,7 @@
  ],
  "license": "cc-by-4.0",
  "access_right": "open",
- "version": "2026-09",
+ "version": "2026-09.2",
  "keywords": [
   "horse racing",
   "greyhound racing",
