@@ -3,3 +3,5 @@
 *.csv.gz
 __pycache__/
 .DS_Store
+python/dist/
+.pytest_cache/

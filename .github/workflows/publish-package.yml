@@ -1,0 +1,59 @@
+name: Publish the Python package
+
+# Tests and builds python/ on every push that changes it. Publishes to PyPI only from a tag
+# pkg-v<version> that matches python/src/puntersedge_datasets/_version.py, through PyPI trusted
+# publishing (OpenID Connect): no PyPI token is stored here or anywhere else.
+on:
+  push:
+    branches: [main]
+    paths: ["python/**", ".github/workflows/publish-package.yml"]
+    tags: ["pkg-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test
+        run: |
+          python -m pip install --upgrade pip build pytest
+          python -m pip install .
+          python -m pytest tests -q
+      - name: Check the tag matches the package version
+        if: startsWith(github.ref, 'refs/tags/pkg-v')
+        run: |
+          v=$(python -c "import re; print(re.search(r'\"(.+)\"', open('src/puntersedge_datasets/_version.py').read()).group(1))")
+          test "pkg-v$v" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME does not match version $v"; exit 1; }
+      - name: Build
+        run: python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: python/dist/
+
+  publish:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/pkg-v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/puntersedge-datasets
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

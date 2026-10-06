@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "puntersedge-datasets"
+dynamic = ["version"]
+description = "Load the PuntersEdge monthly Australian racing closing-line datasets into pandas, checked against their published SHA-256."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "PuntersEdge", email = "support@puntersedge.online" }]
+keywords = ["horse racing", "greyhound racing", "harness racing", "closing line", "racing odds", "australia", "dataset", "sports analytics", "pandas"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = ["pandas>=1.5", "pyarrow>=10"]
+
+[project.urls]
+Homepage = "https://puntersedge.online/datasets?utm_source=datasets_package&utm_medium=pypi"
+Catalogue = "https://puntersedge.online/datasets.json"
+Repository = "https://github.com/Propertyscout001/puntersedge-datasets"
+"Issue Tracker" = "https://github.com/Propertyscout001/puntersedge-datasets/issues"
+"PuntersEdge API" = "https://puntersedge.online/api?utm_source=datasets_package&utm_medium=pypi"
+
+[project.scripts]
+puntersedge-datasets = "puntersedge_datasets.__main__:main"
+
+[tool.hatch.version]
+path = "src/puntersedge_datasets/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/puntersedge_datasets"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/puntersedge_datasets", "tests", "README.md", "LICENSE", "pyproject.toml"]
