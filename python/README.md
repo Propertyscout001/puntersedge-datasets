@@ -3,7 +3,7 @@
 Load the [PuntersEdge](https://puntersedge.online/datasets) monthly samples of the Australian racing closing-line archive into pandas. Each release holds the opening and closing fixed win prices for Australian thoroughbred, harness and greyhound races at a set of bookmakers, one row per race, runner and bookmaker, with the finishing position where one was published.
 
 ```
-pip install puntersedge-datasets
+pip install "puntersedge-datasets @ git+https://github.com/Propertyscout001/puntersedge-datasets#subdirectory=python"
 ```
 
 ```python
